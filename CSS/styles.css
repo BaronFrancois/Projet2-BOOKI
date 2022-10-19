@@ -1,0 +1,598 @@
+/* box sizing: border box, permet d'inclure dans une boite tous les élements comme le contenu + le padding + les bordures. Sinon toute marge interne ou externe se rajoute à la taille de l'élement.
+=/=content box (https://www.pierre-giraud.com/html-css-apprendre-coder-cours/box-sizing)*/
+*{
+    box-sizing: border-box;
+    /*Police d'écriture en Raleway + sans sérif au cas ou Raleway n'est pas disponible*/
+    font-family: 'Raleway', sans-serif;;
+    margin: 0;  
+}
+
+/* body { pour avoir un visu de la maquette en arriere plan 
+  background-image: url("maquette/maquette.PNG");
+  background-size: 1400px 100%;
+  background-repeat: no-repeat;
+  background-position-x: center;
+}*/
+
+/************************************
+*      HEADER LOGO NAV              *
+************************************/
+/*couleur et soulignement des ancres de nav*/
+    /*Lien ancre en display inlline de base*/
+a {
+  /*inherit = hérite des propriété du parent*/
+  color: inherit;
+  text-decoration: none ;
+}
+nav {
+  max-width: 1400px;
+  margin: auto;
+  display: flex;
+  /*align à la même hauteur logo + nav (hebergement et activités)*/
+  align-items: center;
+  /*pour mettre nav tout à droite*/
+  justify-content: flex-end;
+  /*wrap = s'adapte au format width*/
+  flex-wrap: wrap;
+  margin-top: 1.8%;
+}
+nav a{
+  padding: 2rem;
+  /*pour eviter le dépassement sur le hover*/
+  border-top:3px solid transparent;
+}
+nav a:hover {
+  /*vérifier la couleur !*//*rajoute le border en plus = décalage*/
+  border-top-color: #0065FC;
+}
+.sub-nav{
+ display:flex;
+ margin-top:-1.3rem;
+ margin-right: 2.6rem;
+}
+.sub-nav a:hover{
+  color:#0065FC;
+}
+
+#logo {
+  width: 10.2rem;
+  /*auto= prend le plus de place*/
+  margin-right:auto;
+  /* padding: (1) 4 cotés/ (2) haut bas et gauche droite/ (3) haut, gauche droite, bas/ (4) haut/droite/bas/gauche*/
+  padding: 0 2rem;
+  margin-left: 2rem;
+  margin-top: -0.6rem;
+}
+
+/************************************
+*              MAIN             *
+************************************/
+.content {
+  padding: 0% 2.2%;
+  margin: auto;
+  max-width: 1400px;
+}
+.content >p{
+  margin-top:-0.2rem;
+}
+.content h1{
+  font-size: 1.3rem;
+  margin-top: 1.7%;
+}
+.content h1,
+.content >p {
+  margin-bottom:0.8rem;
+}
+/* search form */
+.search-form {
+  display:flex;
+  align-items: center;
+  /*conflit entre marging-top et margin-bottom que j'avais mis sur .filter*/
+  margin-top: 1.8%;
+}
+/* rajout de ce padding car l'input faisait moitié de taille quand on cliquait dedans = j'ai fais une règle globale pour économiser de la place */
+/*rajout de ">" suite au rajout de span (pour le rechercher en responsive)*/
+.search-form > *{
+  padding: 1rem 1.2rem;
+  font-size: 0.9rem;
+}
+.search-form i {
+  background-color: #D3D3D3;
+  border-radius: 1rem 0 0 1rem;
+}
+.search-form input {
+   /* j'avais commencé par un padding mais àa faisait disparaitre la fin du texte "marseille, france" */
+   flex-basis: 16rem;
+   border:1px solid #D3D3D3;
+   /* j'ai la bordure qui dépasse */
+   height: 48px;
+   /*pour l'input retrécisse quand on retrécie la page*/
+   overflow: auto;
+}
+.search-form input::placeholder {
+    font-weight: bold;
+}
+.search-form button{
+  background: #0065FC;
+  color: white;
+  font-weight: bold;
+  border-radius : 0 1rem 1rem 0;
+  border: none;
+  /* modification du temps de la transition */
+  transition: transform 0.2s;
+}
+/* transition */
+.search-form button:hover {
+  opacity: 1;
+  transform: scale(1.03);
+  cursor: pointer;
+}
+/*apparaissait lorsque >992px*/
+.fas.fa-search{
+  background-color: transparent;
+  display: none;
+}
+  
+/************************************
+*           Filter            *
+************************************/
+.filter-list{
+  display:flex;
+  flex-wrap: wrap;
+  align-items:center;
+  gap: 1rem 2.1rem;   /*gap = marge entre les filtres*/
+  margin-top: 2.5%;
+}
+.filter-list h1 {
+  margin-bottom: 0; /*pour palier à un écart (lorsque la fenetre est moisn grande) due au margin imposés par chrome (stylesheet)*/
+}
+.filter {
+  border: 2px solid rgb(228, 228, 253);
+  border-radius: 2rem;
+  display: flex;  /* display flex rajouté après le changement de padding pour .filter .fas */
+  align-items: center;
+  transition: all 100ms;
+  font-weight: bold;
+}  
+.filter .fas{ /* J'avais juste mis le .fas mais j'avais oublié la loupe au dessus */
+  color: #0065FC;
+  background-color:rgb(228, 228, 253);
+  /*padding: 1rem;
+  Probleme avec l'icone "child" qui n'est pas carrée
+  border-radius: 50%;
+  /* margin aligner le border radius dans le cercle */
+  margin: -2px;
+  /* ici je remplace le padding par une hauteur et largeur pré-définie */
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  /* utilisation de Flexbox pour centrer automatiquement l'icone (aide sur discord) */
+  display: flex;
+  /* donc alignement verticalement et horyzontalement */
+  align-items: center;
+  justify-content: center;
+}
+.filter-list h1 {
+  margin-bottom: 0;
+  font-size: 1rem;
+  margin-top:0rem;
+}
+.filter span {
+  
+  margin: 0 18.9px;
+}
+.filter:hover {
+  background-color: rgb(228, 228, 253);
+  transform: scale(1.02);
+}
+/************************************
+*    INFORMATION RESULT             *
+************************************/
+
+.results-message{
+  display:flex;
+  align-items: center;
+  gap: 1rem;  /*gap = marge entre i et <p>*/
+  margin-top: 2.4rem;
+}
+.result-message p{
+  margin-top: 1rem;
+}
+.results-message .fas {
+  color:#0065FC;
+  padding:5px;
+  font-size: 10px;
+  margin-left: 0.5%;
+  width: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #F2F2F2;
+  border-radius: 50%; 
+}
+/************************************
+*       APARTMENT LIST              *
+************************************/
+main h2 {
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+.hotel-list {
+  display: flex;
+  gap: 0.5rem;
+  margin:3% 0% 4% 0%;
+  height: 610px;
+}
+.hotel-list >div { /*pour ne pas que ça s'applique sur la div .hotel-list mais à ses enfants*/
+  background-color: #F2F2F2;
+  padding: 2%;
+  border-radius: 1rem;
+}
+.apartements-list .cities a{
+  font-weight: bold;
+}
+#show-more {
+  width: 100%;
+  font-weight: bold;
+  margin-top: 1%;
+}
+.popular-flex {
+  padding: 0% 0% 0% -4%;
+}
+.popular h1>.fas {
+  color: black;
+}
+
+/************************************
+*         Cities > hotel-list       *
+************************************/
+
+.city-hotel-list {
+  margin:4% 0 0;
+  display: flex;
+  flex-basis: 33%;
+  flex-wrap: wrap;
+  gap: 1.8rem;
+  justify-content: space-around;
+}
+.hotel-card {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 03px;
+  box-shadow: 0 0 16px #0000002e;
+  flex-grow: 1;
+  transition: all 0.2s;
+  flex-basis: 30%;
+  min-width: 15rem;
+}
+.hotel-card:hover {
+  transform: scale(1.02);
+  box-shadow: 3px 5px 11px -5px #000000;
+}
+/* APARTMENT IMAGE */
+.hotel-card-image img {
+  border-radius: 1rem 1rem 0 0;
+  height: 110px;
+  width: 100%;
+  object-fit: cover;
+}
+.hotel-card p,
+.hotel-card h2,
+.popular-description p,
+.popular-description h2 {
+  margin: 0.2rem;
+}
+.stars {
+  color: #0065fc;
+}
+.grey {
+  color: #F2F2F2;
+}
+/************************************
+*            POULAR             *
+************************************/
+.cities span, .popular span{
+  font-weight: bold;
+}
+.hotel-list .popular-flex {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  flex-basis: 100%;
+  justify-content: space-evenly;
+  margin-top: -2%;
+  transform: scale(0.92);
+}
+.popular {
+  display: flex;
+  flex-direction: column;
+  margin-left:2.5%;
+  width:405px;
+}
+.popular-card.hotel-card img {
+  height: auto;
+  border-radius: 1rem 0 0 1rem;
+  width: 40%;
+  margin-right: 0.5rem;
+  margin-right: 0.5rem;
+  object-fit: cover;
+}
+.popular-description {
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.popular-card {
+  display: flex;
+  min-width: 22rem;
+  max-height: 9.2rem;
+}
+.popular-card .stars {
+  margin-top: auto;
+}
+.popular h2 {
+  display: flex;
+  justify-content: space-between;
+  padding:0 7% 14px 0;
+}
+.popular h2 {
+  padding-bottom: 0;
+}
+.popular h2,
+.cities h2 {
+  margin-top: 0.5rem;
+}
+
+/************************************
+*         ASIDE > Activities        *
+************************************/
+#activities{
+  margin: 5% 0 1.1% 0;
+}
+.activities-list {
+  display: grid;
+  grid-template-columns: 0.9fr 0.9fr 0.9fr 0.9fr;
+  /* grid-template-rows: repeat(5, 1fr); */
+  grid-template-rows:  0.6fr 4.2fr 0.5fr 0.7fr 4.1fr;
+  gap: 1.9rem;
+  justify-content: center;  
+  }  
+.activities-list > * {
+  background-size: cover;
+  display: flex;
+  background-position: center;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: all 200ms;
+}  
+.activities-list > a:hover {
+  transform: scale(1.02);
+}
+.big {
+  height: 30rem;
+}
+.VP {
+  grid-area: 1 / 1 / 6 / 2;
+  background-image: url("images/activites/3_medium/VieuxPort.jpg");
+}  
+.PNC {
+ grid-area: 1 / 3 / 6 / 4;
+ background-image: url("images/activites/3_medium/ParcNationalDesCalanques.jpg");  }
+.FP {
+  grid-area: 1 / 2 / 4 / 3;
+  background-image: url("images/activites/3_medium/FortDePomegues.jpg");
+}
+.IF {
+ grid-area: 4 / 2 / 6 / 3;
+ background-image: url("images/activites/3_medium/IlesDuFrioul.jpg");
+}
+.NDG {
+ grid-area: 1 / 4 / 3 / 5;
+ background-image: url("images/activites/3_medium/NotreDameDeLaGarde.jpg");
+}
+.PL {
+ grid-area: 3 / 4 / 6 / 5;
+ background-image: url("images/activites/3_medium/ParcLongchamp.jpg");
+} 
+.activities-list h2 {
+  background-color: white;
+  margin-top: auto;
+  margin-bottom: 0;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0 0 1rem 1rem;
+}
+
+/************************************
+*              Footer               *
+************************************/
+.footer {
+  background-color: #F2F2F2;
+  height: 200px;
+}
+.footer > div{
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 60%;
+  width: 100%;
+  margin: 1.8% 11.8% 0% 19.6%;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+.Column > div {
+  width: 30%;
+  padding: 2rem 2rem;
+}
+.Column a {
+  display: block;
+  margin: 1rem 0;
+}
+/* font de base en gras pour <strong> */
+strong {
+  font-weight: normal;
+}
+
+/************************************
+*            BREACKPOINT            *
+************************************/
+@media (max-width:571px){
+  .hotel-list .cities {
+  background-color: white;
+  /* Le transparent ne fonctionnait pas */
+  }
+}
+@media(max-width:776px){
+  .popular{
+    width:100%;
+    margin:0;
+  }
+  .popular-card{
+    min-width: auto;
+  }
+  .search-form{
+    padding: 1.7%;
+  }
+  .activities-list-grid {
+   grid-template-columns:1fr ;
+   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr; 
+  }
+  .activities-list > * {
+    max-height: 13rem;
+    margin: 1.5%;
+  }
+  .filter-list {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer > div {
+    margin: 0 0 0 0;
+    padding: 0;
+  }
+}
+@media(max-width: 992px){
+  .sub-nav{
+    margin-right: 0%;
+  }
+  .search-form .search-text{
+    display: none; /* fait disparaitre le rechercher */
+  }
+  .fas.fa-search{ 
+   /*rajout du point dans "fas fa-search" sinon ne fonctionne pas (= il recherche un element ayant les deux class en même temps)*/ 
+   display:inline; 
+   /*rajout de inline =/=none qui a été rajouté (du coup il devenait parent et ça créeait un pb*/
+   color: white;
+  }
+  .search-form button{
+   font-weight: normal;
+   margin-left: -0.9rem;
+   border-radius: 15.6px;
+  }
+  .main{
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    overflow:scroll;
+  }
+  #logo {
+    /*doit être au centre*/
+    display: block;
+    margin: auto;
+    padding-left: 40px;
+  }
+  .sub-nav{
+     /*width:100%;*/
+     flex-basis: 100%;
+     /*ancre = display:inline; de base*/
+  }
+  .sub-nav a{
+    /*que herbergement et activités prennent 50% de la place chacun*/
+    flex-basis: 100%;
+    margin-right: -5%;
+    text-align: center;
+    border-bottom: 3px solid #D3D3D3;
+  }
+  nav a:hover {
+    border-top-color: transparent;
+    border-bottom-color: #0065FC;
+    /*même principe pour enlever le border top*/
+  }
+  .filter {
+    order:+1;
+  }
+  .cities{
+    width:auto;
+  }
+  .aside{
+    display: flex;      
+  }
+  .hotel-list >* {
+    background-color: transparent;
+  }
+  .hotel-list {
+    flex-direction: column;
+  }
+  .popular {
+    order: -1; 
+    /* pour mettre "les plus populaires" avant Hébergements à Marseille, ça m'évite de modifer l'ordre d'hébergement (juste pour la logique)*/
+  }
+  .popular-card {
+    flex-basis: auto;
+  }
+  .Column > div {
+    flex-direction: column;
+    height:auto;
+    width: 100%;
+  }  
+  .hotel-list .popular-flex {
+    flex-flow: row wrap;
+  }
+  .footer > div {
+    padding: 0;
+  }
+  .footer {
+  margin-top: 8%;
+  }
+}
+@media (max-width: 1500px) {
+  .activities-list {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+  }
+  .activities-list > * {
+    height: 20rem;
+    grid-area: auto;
+  }
+  .hotel-card .popular-card{
+    width: 100%;
+  }
+  .popular {
+    width: auto;
+    margin:0;
+  }
+  .hotel-list >div{
+    border-radius: 0%;
+  }
+  .popular h2{
+    padding-bottom: 10px;
+  }
+}
+@media (max-width: 1400px){
+  .apartements-list{
+    width:auto;
+    height:auto;
+  }
+  .hotel-list, .footer {
+    flex-direction: column;
+    height:auto;
+  }
+  .popular {
+    order: -1; /* pour mettre "les plus populaires" avant Hébergements à Marseille, ça m'évite de modifer l'ordre d'hébergement (juste pour la logique)*/
+  }
+}    
